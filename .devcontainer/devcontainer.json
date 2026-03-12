@@ -1,49 +1,20 @@
 {
-  "name": "Flutter Debt Planner",
+  "name": "Flutter Dev",
   "image": "cirrusci/flutter:stable",
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts"
-    },
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/common-utils:2": {}
   },
-  "forwardPorts": [8080, 3000, 5037],
-  "portsAttributes": {
-    "8080": {
-      "label": "Flutter Web",
-      "onAutoForward": "notify"
-    }
-  },
-  "postCreateCommand": "flutter doctor && flutter config --enable-web && echo '✅ Flutter环境就绪！'",
-  "postStartCommand": "git config --global --add safe.directory /workspaces/debt-planner",
   "customizations": {
     "vscode": {
       "extensions": [
         "Dart-Code.flutter",
         "Dart-Code.dart-code",
-        "usernamehw.errorlens",
-        "streetsidesoftware.code-spell-checker",
-        "eamodio.gitlens"
-      ],
-      "settings": {
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
-        "dart.flutterHotReloadOnSave": "always",
-        "dart.openDevTools": "flutter",
-        "files.watcherExclude": {
-          "**/.dart_tool": true,
-          "**/.pub-cache": true
-        }
-      }
+        "eamodio.gitlens",
+        "trae-ai.trae"
+      ]
     }
   },
-  "remoteUser": "root",
-  "mounts": [
-    "source=debt-planner-cache,target=/root/.pub-cache,type=volume"
-  ]
+  "forwardPorts": [8080, 5037, 5555],
+  "postCreateCommand": "flutter doctor && flutter pub get",
+  "remoteUser": "root"
 }
